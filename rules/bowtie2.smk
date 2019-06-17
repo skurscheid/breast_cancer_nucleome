@@ -19,6 +19,33 @@ def get_index(machine, config):
 
 singularity: "docker://skurscheid/snakemake_baseimage:0.2"
 
+
+rule bowtie2_se_untrimmed:
+    """ runs alignment of single-end fastq file, modified parameters specific for HiC data"""
+    conda:
+        "../envs/fastqProcessing.yaml"
+    threads:
+        8
+    params:
+        index = get_index("gdu", config),
+        cli_params = config['params']['bowtie2']['cli_params']
+    input:
+        fq = "/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
+    output:
+        bam = "bowtie2/align/se_untrimmed/{batch}/{sample}_{lane}_{replicate}.{end}.bam",
+        metrics = "bowtie2/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
+    shell:
+        """
+            if [[ ! -z "${PERL5LIB}" ]]; then unset PERL5LIB; fi; bowtie2 {params.cli_params}\
+                    -p {threads}\
+                    -x {params.index}\
+                    -U {input.fq}\
+                    --rg-id {wildcards.sample}:{wildcards.batch}\
+                    --rg "replicate:{wildcards.replicate}"\
+                    --met-file {output.metrics}\
+            | samtools view -Sb - > {output.bam}
+        """
+
 rule bowtie2_se:
     """ runs alignment of single-end fastq file, modified parameters specific for HiC data"""
     conda:
@@ -35,7 +62,7 @@ rule bowtie2_se:
         metrics = "bowtie2/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
     shell:
         """
-            unset PERL5LIB; bowtie2 {params.cli_params}\
+            if [[ ! -z "${PERL5LIB}" ]]; then unset PERL5LIB; fi; bowtie2 {params.cli_params}\
                     -p {threads}\
                     -x {params.index}\
                     -U {input.fq}\
