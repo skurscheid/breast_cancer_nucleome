@@ -56,7 +56,7 @@ rule bowtie2_se:
         index = get_index("gdu", config),
         cli_params = config['params']['bowtie2']['cli_params']
     input:
-        fq = "fastp/trimmed/se/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
+        fq = "fastp/trimmed/pe/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
     output:
         bam = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.{end}.bam",
         metrics = "bowtie2/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
@@ -65,11 +65,13 @@ rule bowtie2_se:
             if [[ ! -z "${PERL5LIB}" ]]; then unset PERL5LIB; fi; bowtie2 {params.cli_params}\
                     -p {threads}\
                     -x {params.index}\
+                    -p {threads}\
                     -U {input.fq}\
+                    {params.cli_params}\
                     --rg-id {wildcards.sample}:{wildcards.batch}\
                     --rg "replicate:{wildcards.replicate}"\
                     --met-file {output.metrics}\
-            | samtools view -Sb - > {output.bam}
+            | samtools view -Shb - > {output.bam}
         """
 
 rule bowtie2_se_rerun:
@@ -84,16 +86,17 @@ rule bowtie2_se_rerun:
         index = get_index("gdu", config),
         cli_params = "--reorder"
     input:
-        fq = "fastp/trimmed/se/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
+        fq = "fastp/trimmed/pe/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
     output:
         bam = "bowtie2_rerun/align/se/{batch}/{sample}_{lane}_{replicate}.{end}.bam",
         metrics = "bowtie2_rerun/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
     shell:
         """
-            unset PERL5LIB; bowtie2 {params.cli_params}\
-                    -p {threads}\
+            unset PERL5LIB; bowtie2\
                     -x {params.index}\
+                    -p {threads}\
                     -U {input.fq}\
+                    {params.cli_params}\
                     --met-file {output.metrics}\
             | samtools view -Shb - > {output.bam}
         """
