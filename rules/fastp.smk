@@ -32,7 +32,7 @@ rule run_fastp_pe:
     version:
         "2"
     threads:
-        4
+        16
     input:
         get_fastq
     output:
@@ -55,7 +55,7 @@ rule run_fastp_se:
     version:
         "2"
     threads:
-        1
+        16
     input:
         get_fastq_se
     output:

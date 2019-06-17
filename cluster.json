@@ -1,0 +1,50 @@
+{
+    "__default__" :
+    {
+        "P" : "pb97",
+        "queue" : "biodev",
+        "mem" : "32G",
+        "ncpus" : 16,
+        "std1_out_dir" : "/home/150/sxk150/qsub_output",
+        "error_out_dir" : "/home/150/sxk150/qsub_error",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe",
+        "walltime": "23:59:00"
+    },
+    "md5check" :
+    {
+        "mem" : "1024M",
+        "ncpus" : 1,
+        "walltime": "23:59:00",
+    },
+    "conda_setup":
+    {
+        "queue" : "copyq",
+        "mem" : "1024M",
+        "ncpus" : 1,
+        "walltime": "00:30:00",
+    },
+    "decompress" : 
+    {
+        "mem" : "1024M",
+        "ncpus" : 4,
+        "walltime": "01:00:00",
+        "name" : "{rule}.{wildcards.id}"
+    },
+    "qc_and_trim" : 
+    {
+        "mem" : "2048M",
+        "ncpus" : 4,
+        "walltime": "00:30:00",
+        "name" : "{rule}.{wildcards.id}"
+    },
+    "bowtie2_rRNA" :
+    {
+        "P" : "pb97",
+        "queue" : "biodev",
+        "mem" : "32G",
+        "ncpus" : 16,
+        "walltime": "4:00:00",
+        "name" : "{rule}.{wildcards.id}"
+    }
+}

@@ -25,9 +25,9 @@ rule bowtie2_se_untrimmed:
     conda:
         "../envs/fastqProcessing.yaml"
     threads:
-        8
+        16
     params:
-        index = get_index("gdu", config),
+        index = get_index("raijin", config),
         cli_params = config['params']['bowtie2']['cli_params']
     input:
         fq = "/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
@@ -36,7 +36,7 @@ rule bowtie2_se_untrimmed:
         metrics = "bowtie2/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
     shell:
         """
-            if [[ ! -z "${PERL5LIB}" ]]; then unset PERL5LIB; fi; bowtie2 {params.cli_params}\
+            bowtie2 {params.cli_params}\
                     -p {threads}\
                     -x {params.index}\
                     -U {input.fq}\
@@ -51,9 +51,9 @@ rule bowtie2_se:
     conda:
         "../envs/fastqProcessing.yaml"
     threads:
-        8
+        16
     params:
-        index = get_index("gdu", config),
+        index = get_index("raijin", config),
         cli_params = config['params']['bowtie2']['cli_params']
     input:
         fq = "fastp/trimmed/pe/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
@@ -62,7 +62,7 @@ rule bowtie2_se:
         metrics = "bowtie2/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
     shell:
         """
-            if [[ ! -z "${PERL5LIB}" ]]; then unset PERL5LIB; fi; bowtie2 {params.cli_params}\
+            bowtie2 {params.cli_params}\
                     -p {threads}\
                     -x {params.index}\
                     -p {threads}\
@@ -81,9 +81,9 @@ rule bowtie2_se_rerun:
     conda:
         "../envs/fastqProcessing.yaml"
     threads:
-        8
+        16
     params:
-        index = get_index("gdu", config),
+        index = get_index("raijin", config),
         cli_params = "--reorder"
     input:
         fq = "fastp/trimmed/pe/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
@@ -92,7 +92,7 @@ rule bowtie2_se_rerun:
         metrics = "bowtie2_rerun/report/se/{batch}/{sample}_{lane}_{replicate}.{end}.txt"
     shell:
         """
-            unset PERL5LIB; bowtie2\
+            bowtie2\
                     -x {params.index}\
                     -p {threads}\
                     -U {input.fq}\

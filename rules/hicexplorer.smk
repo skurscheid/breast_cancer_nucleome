@@ -51,7 +51,7 @@ rule hicBuildMatrix_restrictionCutFile_test_run:
     params:
         inputBufferSize = 400000
     threads:
-        8
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam",
@@ -85,7 +85,7 @@ rule hicBuildMatrix_bin_test_run:
         inputBufferSize = 400000,
         restrictionSequence = "AAGCTT"
     threads:
-        8
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam"
@@ -118,7 +118,7 @@ rule hicBuildMatrix_restrictionCutFile:
     params:
         inputBufferSize = 400000
     threads:
-        8
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam",
@@ -148,7 +148,7 @@ rule hicBuildMatrix_bin:
     params:
         inputBufferSize = 400000
     threads:
-        8
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam"
@@ -177,7 +177,7 @@ rule hicQC_per_batch:
     params:
         labels = hicQCLabels
     threads:
-        64
+        16
     input:
         hicQCInput
     output:
@@ -198,7 +198,7 @@ rule hicCorrelate_per_batch:
         labels = h5PerBatchLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        32
+        16
     input:
         files = h5PerBatchFiles
     output:
@@ -223,7 +223,7 @@ rule hicCorrelate_per_sample:
         labels = h5PerSampleLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        32
+        16
     input:
         files = h5PerSampleFiles
     output:
