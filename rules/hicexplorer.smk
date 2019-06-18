@@ -193,12 +193,12 @@ rule hicCorrelate_per_batch:
     conda:
         "../envs/hicexplorer.yaml"
     version:
-        1
+        2
     params:
         labels = h5PerBatchLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        16
+        64
     input:
         files = h5PerBatchFiles
     output:
@@ -223,7 +223,7 @@ rule hicCorrelate_per_sample:
         labels = h5PerSampleLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        16
+        64
     input:
         files = h5PerSampleFiles
     output:

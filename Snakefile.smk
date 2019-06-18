@@ -70,10 +70,10 @@ rule all_hicbuildmatrix_bin:
     input:
         expand("hicexplorer/hicBuildMatrix_bin/{bin_size}/{file}_hic_matrix.h5",
                file = hicmatrixbuilder_targets(units),
-               bin_size = [10000, 20000, 50000, 100000]),
+               bin_size = [10000]),
         expand("hicexplorer/hicBuildMatrix_bin/{bin_size}/{file}/qc",
                file = hicmatrixbuilder_targets(units),
-               bin_size = [10000, 20000, 50000, 100000])
+               bin_size = [10000])
 
 rule all_hicSumMatrices_bin:
     input:
@@ -96,12 +96,6 @@ rule test_run_hicbuildmatrix_HindIII:
                lane = "L001",
                replicate = ["1", "2"],
                suffix = ["h5", "bam"])
-    #    expand("hicexplorer/hicBuildMatrix/test_run/{res_enzyme}/{batch}/{sample}/{sample}_{lane}_{replicate}/qc",
-    #            res_enzyme = "HindIII",
-    #            batch = "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb",
-    #            sample = "MCF10ATGFb",
-    #            lane = "L001",
-    #            replicate = ["1", "2"])
 
 rule test_run_hicbuildmatrix_bin:
     input:

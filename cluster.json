@@ -11,10 +11,16 @@
         "m" : "abe",
         "walltime": "23:59:00"
     },
-    "md5check" :
+    "hicCorrelate_per_batch":
     {
-        "mem" : "1024M",
-        "ncpus" : 1,
+        "mem" : "1024G",
+        "ncpus" : 64,
+        "walltime": "23:59:00",
+    },
+    "hicCorrelate_per_sample":
+    {
+        "mem" : "1024G",
+        "ncpus" : 64,
         "walltime": "23:59:00",
     },
     "conda_setup":
