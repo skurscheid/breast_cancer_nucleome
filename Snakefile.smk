@@ -1,6 +1,7 @@
 # The main entry point of your workflow.
 # After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
 
+import os
 import pandas as pd
 from snakemake.utils import validate, min_version
 

@@ -15,7 +15,7 @@ source ~/.bashrc
     --configfile /home/150/sxk150/breast_cancer_nucleome/config.yaml\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\
-                    -l ncpus={cluster.ncpus} \
+                    -l ncpus={threads} \
                     -q {cluster.queue} \
                     -l mem={cluster.mem} \
                     -l wd\
