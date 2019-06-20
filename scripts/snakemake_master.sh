@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -P pb97
-#PBS -l walltime=144:00:00
+#PBS -l walltime=24:00:00
 #PBS -l wd
 #PBS -q biodev
 #PBS -e /home/150/sxk150/qsub_error
@@ -11,7 +11,7 @@
 
 source ~/.bashrc
 
-/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk all_hicbuildmatrix_bin\
+/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk test_hicCorrelate_perSample\
     --configfile /home/150/sxk150/breast_cancer_nucleome/config.yaml\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\

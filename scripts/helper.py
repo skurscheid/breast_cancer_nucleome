@@ -62,18 +62,18 @@ def h5PerBatchLabels(wildcards):
 def h5PerSampleFiles(wildcards):
     """function for fetching h5 matrix files per sample"""
     files = []
-    for index, row in units[units.sample_id == wildcards["sample"]].iterrows():
+    for index, row in units[units.sample_id == wildcards['sample_id']].iterrows():
         files.append("/".join(["hicexplorer",
-                                wildcards["command"],
-                                wildcards["subcommand"],
+                                wildcards['command'],
+                                wildcards['subcommand'],
                                 row['batch'],
                                 row['sample_id'],
                                 row['sample_id']]) + "_" + row['lane'] + "_" + str(row['replicate']) + "_hic_matrix.h5")
     return(files)
 
 def h5PerSampleLabels(wildcards):
-    """function for fetching h5 matrix files per sample"""
+    """function for labelling h5 matrix files per sample"""
     labels = []
-    for index, row in units[units.sample_id == wildcards["sample"]].iterrows():
+    for index, row in units[units.sample_id == wildcards['sample_id']].iterrows():
         labels.append(row['batch'])
-    return(sample)
+    return(labels)

@@ -4,7 +4,7 @@
         "P" : "pb97",
         "queue" : "biodev",
         "mem" : "32G",
-        "std1_out_dir" : "/home/150/sxk150/qsub_output",
+        "std1_out_dir" : "/home/150/sxk150/qsub_out",
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
         "m" : "abe",
@@ -12,14 +12,17 @@
     },
     "hicCorrelate_per_batch":
     {
-        "mem" : "1024G",
+        "mem" : "512G",
+        "walltime" : "08:00:00"
     },
     "hicCorrelate_per_sample":
     {
-        "mem" : "1024G",
+        "mem" : "512G",
+        "walltime" : "08:00:00"
     },
     "hicBuildMatrix_bin":
     {
         "mem" : "256G",
+        "walltime" : "02:00:00"
     }
 }

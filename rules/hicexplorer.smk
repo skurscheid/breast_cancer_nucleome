@@ -24,7 +24,7 @@ rule findRestSites:
     params:
         searchPattern = "AAGCTT"
     input:
-        fasta = lambda wildcards: config["params"]["hicexplorer"]["genome_fasta"]["gdu"]
+        fasta = lambda wildcards: config["params"]["hicexplorer"]["genome_fasta"]["raijin"]
     output:
         rest_sites_bed = "hicexplorer/findRestSite/hg38_{res_enzyme}_rest_sites.bed"
     shell:
@@ -51,7 +51,7 @@ rule hicBuildMatrix_restrictionCutFile_test_run:
     params:
         inputBufferSize = 400000
     threads:
-        int(os.getenv("PBS_NCPUS"))
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam",
@@ -85,7 +85,7 @@ rule hicBuildMatrix_bin_test_run:
         inputBufferSize = 400000,
         restrictionSequence = "AAGCTT"
     threads:
-        int(os.getenv("PBS_NCPUS"))
+        8
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam"
@@ -118,7 +118,7 @@ rule hicBuildMatrix_restrictionCutFile:
     params:
         inputBufferSize = 400000
     threads:
-        int(os.getenv("PBS_NCPUS"))
+        24
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam",
@@ -148,7 +148,7 @@ rule hicBuildMatrix_bin:
     params:
         inputBufferSize = 400000
     threads:
-        32
+        24
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam"
@@ -177,7 +177,7 @@ rule hicQC_per_batch:
     params:
         labels = hicQCLabels
     threads:
-        int(os.getenv("PBS_NCPUS"))
+        4
     input:
         hicQCInput
     output:
@@ -198,7 +198,7 @@ rule hicCorrelate_per_batch:
         labels = h5PerBatchLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        64
+        24
     input:
         files = h5PerBatchFiles
     output:
@@ -223,12 +223,12 @@ rule hicCorrelate_per_sample:
         labels = h5PerSampleLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        int(os.getenv("PBS_NCPUS"))
+        24
     input:
         files = h5PerSampleFiles
     output:
-        heatmap = "hicexplorer/hicCorrelate/perSample/{command}/{subcommand}/{sample}_heatmap.pdf",
-        scatterplot = "hicexplorer/hicCorrelate/perSample/{command}/{subcommand}/{sample}_scatterplot.pdf"
+        heatmap = "hicexplorer/hicCorrelate/perSample/{command}/{subcommand}/{sample_id}_heatmap.pdf",
+        scatterplot = "hicexplorer/hicCorrelate/perSample/{command}/{subcommand}/{sample_id}_scatterplot.pdf"
     shell:
         """
         hicCorrelate --matrices {input.files}\
@@ -246,7 +246,7 @@ rule hicSumMatrices:
         1
     params:
     threads:
-        int(os.getenv("PBS_NCPUS"))
+        4
     input:
         files = h5PerSampleFiles
     output:
