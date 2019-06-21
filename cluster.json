@@ -12,13 +12,18 @@
     },
     "hicCorrelate_per_batch":
     {
-        "mem" : "512G",
-        "walltime" : "08:00:00"
+        "mem" : "64G",
+        "walltime" : "01:00:00"
     },
     "hicCorrelate_per_sample":
     {
-        "mem" : "512G",
-        "walltime" : "08:00:00"
+        "mem" : "64G,
+        "walltime" : "01:00:00"
+    },
+    "hicCorrelate_per_replicate":
+    {
+        "mem" : "64G",
+        "walltime" : "01:00:00"
     },
     "hicBuildMatrix_bin":
     {

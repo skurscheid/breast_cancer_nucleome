@@ -11,7 +11,7 @@
 
 source ~/.bashrc
 
-/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk test_hicCorrelate_perSample\
+/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk test_hicCorrelate_perReplicate\
     --configfile /home/150/sxk150/breast_cancer_nucleome/config.yaml\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\

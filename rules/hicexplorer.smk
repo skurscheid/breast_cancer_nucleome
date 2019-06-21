@@ -239,7 +239,7 @@ rule hicCorrelate_per_sample:
                         
         """
     
-rule hicCorrelate_per_sample:
+rule hicCorrelate_per_replicate:
     conda:
         "../envs/hicexplorer.yaml"
     version:
@@ -262,7 +262,8 @@ rule hicCorrelate_per_sample:
                      --outFileNameHeatmap {output.heatmap}\
                      --outFileNameScatter {output.scatterplot}
                         
-        """\
+        """
+
 rule hicSumMatrices:
     conda:
         "../envs/hicexplorer.yaml"
