@@ -264,7 +264,7 @@ rule hicCorrelate_per_replicate:
                         
         """
 
-rule hicSumMatrices:
+rule hicSumMatrices_per_replicate:
     conda:
         "../envs/hicexplorer.yaml"
     version:
@@ -273,9 +273,9 @@ rule hicSumMatrices:
     threads:
         4
     input:
-        files = h5PerSampleFiles
+        files = h5PerReplicateFiles
     output:
-        matrix = "hicexplorer/hicSumMatrices/{command}/{subcommand}/{sample}.h5"
+        matrix = "hicexplorer/hicSumMatrices/{command}/{subcommand}/{sample_id}_replicate_{replicate}.h5"
     shell:
         """
             hicSumMatrices --matrices {input.files} --outFileName {output.matrix}
