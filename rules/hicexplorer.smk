@@ -181,7 +181,7 @@ rule hicQC_per_batch:
     input:
         hicQCInput
     output:
-        directory("{tool}/{command}/{sub_command}/{batch}/")
+        directory("{tool}/{command}/{subcommand}/{batch}/")
     shell:
         """
         hicQC --logfiles {input}\
