@@ -30,7 +30,7 @@ def hicQCInput(wildcards):
     """function for fetching QC log files per batch"""
     t = []
     for index, row in units[units.batch == wildcards["batch"]].iterrows():
-        t.append(wildcards["tool"] + "/" + wildcards["command"] + "/" + wildcards["subcommand"] + "/" + row['batch'] + "/" + row['sample_id'] + "/" + row['sample_id'] + "_" + row['lane'] + "_" + str(row['replicate']) + "/qc/QC.log")
+        t.append("hicexplorer" + "/" + wildcards["command"] + "/" + wildcards["subcommand"] + "/" + row['batch'] + "/" + row['sample_id'] + "/" + row['sample_id'] + "_" + row['lane'] + "_" + str(row['replicate']) + "/qc/QC.log")
     return(t)
 
 def hicQCLabels(wildcards):

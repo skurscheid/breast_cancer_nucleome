@@ -142,8 +142,9 @@ rule test_hicCorrelate_perBatch:
 
 rule all_hicQC:
     input:
-        expand("hicexplorer/hicQC/bin/{bin_size}/{batch}/",
-               bin_size = [10000],
+        expand("hicexplorer/hicQC/{command}/{subcommand}/{batch}/",
+               command = "hicBuildMatrix_bin",
+               subcommand = [10000],
                batch = ["170306_NB501086_0102_HiC1_6_run4", "NB501086_0088_DTremethick_JCSMR_HiC_shZ_TGFb",
                         "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb", "NB501086_0100_DTremethick_HiC1_6_run3",
                         "NB501086_0079_DTremethick_JCSMR_HiC_run1", "NB501086_0103_DTremethick_JCSMR_HiC_shZ_TGFb_run3",
