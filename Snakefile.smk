@@ -88,6 +88,15 @@ rule all_hicSumMatrices_HindIII:
                sample = samples['sample_id'].unique().tolist(),
                bin_size = "HindIII"),
 
+rule all_hicCorrelate_perReplicate:
+    input:
+        expand("hicexplorer/hicCorrelate/perReplicate/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_{plot}.pdf",
+                subcommand = "10000",
+                sample = samples['sample_id'].unique().tolist(),
+                replicate = [1, 2],
+                plot = ["heatmap", "scatterplot"])
+
+### Test rules
 rule test_run_hicbuildmatrix_HindIII:
     input:
         expand("hicexplorer/hicBuildMatrix/test_run/{res_enzyme}/{batch}/{sample}/test_{sample}_{lane}_{replicate}_hic_matrix.{suffix}",

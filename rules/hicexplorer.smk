@@ -198,7 +198,7 @@ rule hicCorrelate_per_batch:
         labels = h5PerBatchLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        24
+        4
     input:
         files = h5PerBatchFiles
     output:
@@ -223,7 +223,7 @@ rule hicCorrelate_per_sample:
         labels = h5PerSampleLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        24
+        4
     input:
         files = h5PerSampleFiles
     output:
@@ -248,7 +248,7 @@ rule hicCorrelate_per_replicate:
         labels = h5PerReplicateLabels,
         additional = "--plotNumbers --plotFileFormat pdf"
     threads:
-        24
+        4
     input:
         files = h5PerReplicateFiles
     output:
