@@ -252,8 +252,8 @@ rule hicCorrelate_per_replicate:
     input:
         files = h5PerReplicateFiles
     output:
-        heatmap = "hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_heatmap.pdf",
-        scatterplot = "hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_scatterplot.pdf"
+        heatmap = "hicexplorer/hicCorrelate/perReplicate/{command}/{subcommand}/{sample_id}_replicate_{replicate}_heatmap.pdf",
+        scatterplot = "hicexplorer/hicCorrelate/perReplicate/{command}/{subcommand}/{sample_id}_replicate_{replicate}_scatterplot.pdf"
     shell:
         """
         hicCorrelate --matrices {input.files}\

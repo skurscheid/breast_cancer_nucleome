@@ -117,7 +117,7 @@ rule test_hicCorrelate_perSample:
 
 rule test_hicCorrelate_perReplicate:
     input:
-        expand("hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_{plot}.pdf",
+        expand("hicexplorer/hicCorrelate/perReplicate/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_{plot}.pdf",
                 subcommand = "10000",
                 sample = "MCF10A",
                 replicate = [1, 2],
