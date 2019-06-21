@@ -238,7 +238,31 @@ rule hicCorrelate_per_sample:
                      --outFileNameScatter {output.scatterplot}
                         
         """
-
+    
+rule hicCorrelate_per_sample:
+    conda:
+        "../envs/hicexplorer.yaml"
+    version:
+        1
+    params:
+        labels = h5PerReplicateLabels,
+        additional = "--plotNumbers --plotFileFormat pdf"
+    threads:
+        24
+    input:
+        files = h5PerReplicateFiles
+    output:
+        heatmap = "hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_heatmap.pdf",
+        scatterplot = "hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_scatterplot.pdf"
+    shell:
+        """
+        hicCorrelate --matrices {input.files}\
+                     --labels {params.labels}\
+                     --threads {threads}\
+                     --outFileNameHeatmap {output.heatmap}\
+                     --outFileNameScatter {output.scatterplot}
+                        
+        """\
 rule hicSumMatrices:
     conda:
         "../envs/hicexplorer.yaml"

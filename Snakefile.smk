@@ -115,6 +115,14 @@ rule test_hicCorrelate_perSample:
                 sample = "MCF10A",
                 plot = ["heatmap", "scatterplot"])
 
+rule test_hicCorrelate_perReplicate:
+    input:
+        expand("hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_{plot}.pdf",
+                subcommand = "10000",
+                sample = "MCF10A",
+                replicate = [1, 2]
+                plot = ["heatmap", "scatterplot"])
+
 rule test_hicCorrelate_perBatch:
     input:
         expand("hicexplorer/hicCorrelate/perBatch/hicBuildMatrix_bin/{subcommand}/{batch}_{plot}.pdf",
