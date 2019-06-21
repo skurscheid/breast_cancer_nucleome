@@ -150,6 +150,13 @@ rule all_hicQC:
                         "NB501086_0079_DTremethick_JCSMR_HiC_run1", "NB501086_0103_DTremethick_JCSMR_HiC_shZ_TGFb_run3",
                         "NB501086_0080_DTremethick_JCSMR_HiC_run2", "Project_SN877_0303_Max_Nekrasov_Human_Breast_HiC"])
 
+rule all_hicQC_per_sample:
+    input:
+        expand("hicexplorer/hicQC/{command}/{subcommand}/{sample_id}/",
+               command = "hicBuildMatrix_bin",
+               subcommand = [10000],
+               sample = samples['sample_id'].unique().tolist())
+
 ##### load additional workflow rules #####
 include: "rules/fastp.smk"
 include: "rules/bowtie2.smk"

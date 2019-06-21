@@ -40,6 +40,20 @@ def hicQCLabels(wildcards):
         t.append(row['sample_id'] + "_" + row['lane'] + "_" + str(row['replicate']))
     return(t)
 
+def hicQCInputPerSample(wildcards):
+    """function for fetching QC log files per sample"""
+    t = []
+    for index, row in units[units.sample_id == wildcards["sample_id"]].iterrows():
+        t.append("hicexplorer" + "/" + wildcards["command"] + "/" + wildcards["subcommand"] + "/" + row['batch'] + "/" + row['sample_id'] + "/" + row['sample_id'] + "_" + row['lane'] + "_" + str(row['replicate']) + "/qc/QC.log")
+    return(t)
+
+def hicQCLabelsPerSample(wildcards):
+    """function for fetching QC log files per sample"""
+    t = []
+    for index, row in units[units.sample_id == wildcards["sample_id"]].iterrows():
+        t.append(row['batch'] + "_" + row['lane'] + "_" + str(row['replicate']))
+    return(t)
+
 def h5PerBatchFiles(wildcards):
     """function for fetching h5 matrix files per batch"""
     files = []

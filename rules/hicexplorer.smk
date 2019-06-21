@@ -146,7 +146,8 @@ rule hicBuildMatrix_bin:
     version:
         4
     params:
-        inputBufferSize = 400000
+        inputBufferSize = 400000,
+
     threads:
         24
     input:
@@ -167,6 +168,26 @@ rule hicBuildMatrix_bin:
                 --inputBufferSize {params.inputBufferSize} \
                 --outFileName {output.outHicMatrix} \
                 --QCfolder {output.qcFolder} 1>{log} 2>{log}
+        """
+
+rule hicQC_per_sample:
+    conda:
+        "../envs/hicexplorer.yaml"
+    version:
+        1
+    params:
+        labels = hicQCLabelsPerSample
+    threads:
+        4
+    input:
+        hicQCInputPerSample
+    output:
+        directory("hicexplorer/hicQC/{command}/{subcommand}/{batch}/")
+    shell:
+        """
+        hicQC --logfiles {input}\
+              --labels {params.labels}\
+              --outputFolder {output}
         """
 
 rule hicQC_per_batch:
