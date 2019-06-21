@@ -17,7 +17,7 @@
     },
     "hicCorrelate_per_sample":
     {
-        "mem" : "64G,
+        "mem" : "64G",
         "walltime" : "01:00:00"
     },
     "hicCorrelate_per_replicate":
