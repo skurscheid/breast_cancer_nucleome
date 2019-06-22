@@ -49,15 +49,6 @@ rule all_align:
                 file = fastp_targets(units),
                 end = ["end1", "end2"])
 
-rule test_align_rerun:
-    input:
-        expand("bowtie2_rerun/align/se/{file}.{end}.bam",
-                file = "NB501086_0079_DTremethick_JCSMR_HiC_run1/MCF10ACA1_L001_1",
-                end = ["end1", "end2"]),
-        expand("bowtie2_rerun/report/se/{file}.{end}.txt",
-                file = "NB501086_0079_DTremethick_JCSMR_HiC_run1/MCF10ACA1_L001_1",
-                end = ["end1", "end2"])
-
 rule all_hicbuildmatrix_HindIII:
     input:	
         expand("hicexplorer/hicBuildMatrix/HindIII/{file}_hic_matrix.h5",
@@ -96,6 +87,32 @@ rule all_hicCorrelate_perReplicate:
                 sample = samples['sample_id'].unique().tolist(),
                 replicate = [1, 2],
                 plot = ["heatmap", "scatterplot"])
+
+rule all_hicQC:
+    input:
+        expand("hicexplorer/hicQC/{command}/{subcommand}/{batch}/",
+               command = "hicBuildMatrix_bin",
+               subcommand = [10000],
+               batch = ["170306_NB501086_0102_HiC1_6_run4", "NB501086_0088_DTremethick_JCSMR_HiC_shZ_TGFb",
+                        "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb", "NB501086_0100_DTremethick_HiC1_6_run3",
+                        "NB501086_0079_DTremethick_JCSMR_HiC_run1", "NB501086_0103_DTremethick_JCSMR_HiC_shZ_TGFb_run3",
+                        "NB501086_0080_DTremethick_JCSMR_HiC_run2", "Project_SN877_0303_Max_Nekrasov_Human_Breast_HiC"])
+
+rule all_hicQC_per_sample:
+    input:
+        expand("hicexplorer/hicQC/perSample/{command}/{subcommand}/{sample_id}/",
+               command = "hicBuildMatrix_bin",
+               subcommand = [10000],
+               sample_id = samples['sample_id'].unique().tolist())
+
+rule all_hicMergeMatrixBins_per_replicate:
+    input:
+        expand("hicexplorer/hicMergeMatrixBins/{numBins}/{command}/{subcommand}/{sample_id}_replicate_{replicate}.h5",
+               numBins = [10, 50, 100]
+               command = "hicBuildMatrix_bin",
+               subcommand = [10000],
+               sample_id = samples['sample_id'].unique().tolist(),
+               replicate = [1,2])
 
 ### Test rules
 rule test_run_hicbuildmatrix_HindIII:
@@ -140,22 +157,14 @@ rule test_hicCorrelate_perBatch:
                 batch = "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb",
                 plot = ["heatmap", "scatterplot"])
 
-rule all_hicQC:
+rule test_align_rerun:
     input:
-        expand("hicexplorer/hicQC/{command}/{subcommand}/{batch}/",
-               command = "hicBuildMatrix_bin",
-               subcommand = [10000],
-               batch = ["170306_NB501086_0102_HiC1_6_run4", "NB501086_0088_DTremethick_JCSMR_HiC_shZ_TGFb",
-                        "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb", "NB501086_0100_DTremethick_HiC1_6_run3",
-                        "NB501086_0079_DTremethick_JCSMR_HiC_run1", "NB501086_0103_DTremethick_JCSMR_HiC_shZ_TGFb_run3",
-                        "NB501086_0080_DTremethick_JCSMR_HiC_run2", "Project_SN877_0303_Max_Nekrasov_Human_Breast_HiC"])
-
-rule all_hicQC_per_sample:
-    input:
-        expand("hicexplorer/hicQC/perSample/{command}/{subcommand}/{sample_id}/",
-               command = "hicBuildMatrix_bin",
-               subcommand = [10000],
-               sample_id = samples['sample_id'].unique().tolist())
+        expand("bowtie2_rerun/align/se/{file}.{end}.bam",
+                file = "NB501086_0079_DTremethick_JCSMR_HiC_run1/MCF10ACA1_L001_1",
+                end = ["end1", "end2"]),
+        expand("bowtie2_rerun/report/se/{file}.{end}.txt",
+                file = "NB501086_0079_DTremethick_JCSMR_HiC_run1/MCF10ACA1_L001_1",
+                end = ["end1", "end2"])
 
 ##### load additional workflow rules #####
 include: "rules/fastp.smk"
