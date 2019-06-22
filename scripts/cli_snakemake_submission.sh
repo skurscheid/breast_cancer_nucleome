@@ -1,17 +1,4 @@
-#!/bin/bash
-#PBS -P pb97
-#PBS -l walltime=24:00:00
-#PBS -l wd
-#PBS -q biodev
-#PBS -e /home/150/sxk150/qsub_error
-#PBS -o /home/150/sxk150/qsub_out
-#PBS -l ncpus=1
-#PBS -M skurscheid@gmail.com
-#PBS -m abe
-
-source ~/.bashrc
-
-/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk all_hicSumMatrices_bin\
+/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk $1 \
     --configfile /home/150/sxk150/breast_cancer_nucleome/config.yaml\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\
@@ -30,5 +17,4 @@ source ~/.bashrc
     --local-cores 1\
 	--cluster-config /home/150/sxk150/breast_cancer_nucleome/cluster.json\
     --keep-going\
-	-pr 
-
+	-pr${2}

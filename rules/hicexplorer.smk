@@ -144,11 +144,11 @@ rule hicBuildMatrix_bin:
     conda:
         "../envs/hicexplorer.yaml"
     version:
-        4
+        5
     params:
         inputBufferSize = 400000,
-        restrictionSequence = str(config['hicexplorer']['hicBuildMatrix']['restrictionSequence']),
-        danglingSequence = str(config['hicexplorer']['hicBuildMatrix']['danglingSequence'])
+        restrictionSequence = config['params']['hicexplorer']['hicBuildMatrix']['restrictionSequence'],
+        danglingSequence = config['params']['hicexplorer']['hicBuildMatrix']['danglingSequence']
     threads:
         16
     input:
@@ -177,7 +177,7 @@ rule hicQC_per_sample:
     conda:
         "../envs/hicexplorer.yaml"
     version:
-        1
+        2
     params:
         labels = hicQCLabelsPerSample
     threads:
@@ -185,7 +185,7 @@ rule hicQC_per_sample:
     input:
         hicQCInputPerSample
     output:
-        directory("hicexplorer/hicQC/perSample/{command}/{subcommand}/{batch}/")
+        directory("hicexplorer/hicQC/perSample/{command}/{subcommand}/{sample_id}/")
     shell:
         """
         hicQC --logfiles {input}\
@@ -205,7 +205,7 @@ rule hicQC_per_batch:
     input:
         hicQCInput
     output:
-        directory("hicexplorer/hicQC/{command}/{subcommand}/{batch}/")
+        directory("hicexplorer/hicQC/perBatch/{command}/{subcommand}/{batch}/")
     shell:
         """
         hicQC --logfiles {input}\

@@ -152,10 +152,10 @@ rule all_hicQC:
 
 rule all_hicQC_per_sample:
     input:
-        expand("hicexplorer/hicQC/{command}/{subcommand}/{sample_id}/",
+        expand("hicexplorer/hicQC/perSample/{command}/{subcommand}/{sample_id}/",
                command = "hicBuildMatrix_bin",
                subcommand = [10000],
-               sample = samples['sample_id'].unique().tolist())
+               sample_id = samples['sample_id'].unique().tolist())
 
 ##### load additional workflow rules #####
 include: "rules/fastp.smk"
