@@ -182,7 +182,7 @@ rule hicQC_per_sample:
     input:
         hicQCInputPerSample
     output:
-        directory("hicexplorer/hicQC/{command}/{subcommand}/{batch}/")
+        directory("hicexplorer/hicQC/perSample/{command}/{subcommand}/{batch}/")
     shell:
         """
         hicQC --logfiles {input}\
