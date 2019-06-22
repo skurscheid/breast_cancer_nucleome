@@ -147,9 +147,10 @@ rule hicBuildMatrix_bin:
         4
     params:
         inputBufferSize = 400000,
-
+        restrictionSequence = str(config['hicexplorer']['hicBuildMatrix']['restrictionSequence']),
+        danglingSequence = str(config['hicexplorer']['hicBuildMatrix']['danglingSequence'])
     threads:
-        24
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam"
@@ -164,6 +165,8 @@ rule hicBuildMatrix_bin:
         """
         hicBuildMatrix --samFiles {input.mate1} {input.mate2} \
                 --threads {threads} \
+                --restrictionSequence {params.restrictionSequence}\
+                --danglingSequence {params.danglingSequence}\
                 --binSize {wildcards.resolution}\
                 --inputBufferSize {params.inputBufferSize} \
                 --outFileName {output.outHicMatrix} \
