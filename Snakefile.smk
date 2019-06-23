@@ -107,10 +107,12 @@ rule all_hicQC_per_sample:
 
 rule all_hicMergeMatrixBins_1MB:
     input:
-        expand("hicexplorer/hicMergeMatrixBins/{numBins}/{resolution}/{file}_hic_matrix.h5",
-               numBins = [10, 50, 100],
-               resolution = [10000],
-               file = hicmatrixbuilder_targets(units))
+        expand("hicexplorer/hicMergeMatrixBins/{numBins}/{command}/{subcommand}/{sample_id}_replicate_{replicate}.h5",
+                numBins = [10, 50, 100],
+                command = "hicBuildMatrix_bin",
+                subcommand = "10000",
+                sample = samples['sample_id'].unique().tolist(),
+                replicate = [1, 2])
 
 ### Test rules
 rule test_run_hicbuildmatrix_HindIII:

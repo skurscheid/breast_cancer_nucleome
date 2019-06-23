@@ -315,9 +315,9 @@ rule hicMergeMatrixBins_per_replicate:
     threads:
         1
     input:
-        files = rules.hicBuildMatrix_bin.output.outHicMatrix
+        files = rules.hicSumMatrices_per_replicate.output.matrix
     output:
-        matrix = "hicexplorer/hicMergeMatrixBins/{numBins}/{resolution}/{batch}/{sample}/{sample}_{lane}_{replicate}_hic_matrix.h5"
+        matrix = "hicexplorer/hicMergeMatrixBins/{numBins}/{command}/{subcommand}/{sample_id}_replicate_{replicate}.h5"
     shell:
         """
             hicMergeMatrixBins --matrix {input.files} --numBins {wildcards.numBins} --outFileName {output.matrix}
