@@ -305,7 +305,7 @@ rule hicSumMatrices_per_replicate:
             hicSumMatrices --matrices {input.files} --outFileName {output.matrix}
         """
 
-rule hicMergeMatrixBins_per_recplicate:
+rule hicMergeMatrixBins_per_replicate:
     conda:
         "../envs/hicexplorer.yaml"
     version:
@@ -315,7 +315,7 @@ rule hicMergeMatrixBins_per_recplicate:
     threads:
         1
     input:
-        files = rules.hicBuildMatrix_bin.output
+        files = rules.hicBuildMatrix_bin.output.outHicMatrix
     output:
         matrix = "hicexplorer/hicMergeMatrixBins/{numBins}/{resolution}/{batch}/{sample}/{sample}_{lane}_{replicate}_hic_matrix.h5"
     shell:

@@ -108,7 +108,7 @@ rule all_hicQC_per_sample:
 rule all_hicMergeMatrixBins_1MB:
     input:
         expand("hicexplorer/hicMergeMatrixBins/{numBins}/{resolution}/{file}_hic_matrix.h5",
-               numBins = [10, 50, 100]
+               numBins = [10, 50, 100],
                resolution = [10000],
                file = hicmatrixbuilder_targets(units))
 
