@@ -108,7 +108,7 @@ rule all_hicQC_per_sample:
 rule all_hicMergeMatrixBins_per_replicate:
     input:
         expand("hicexplorer/hicMergeMatrixBins/{numBins}/{command}/{subcommand}/{sample_id}_replicate_{replicate}.h5",
-               numBins = [10, 50, 100]
+               numBins = [10, 50, 100],
                command = "hicBuildMatrix_bin",
                subcommand = [10000],
                sample_id = samples['sample_id'].unique().tolist(),

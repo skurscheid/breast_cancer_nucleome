@@ -305,7 +305,7 @@ rule hicSumMatrices_per_replicate:
             hicSumMatrices --matrices {input.files} --outFileName {output.matrix}
         """
 
-rule hicMergeMatrixBins_per_recplicate
+rule hicMergeMatrixBins_per_recplicate:
     conda:
         "../envs/hicexplorer.yaml"
     version:
@@ -320,5 +320,5 @@ rule hicMergeMatrixBins_per_recplicate
         matrix = "hicexplorer/hicMergeMatrixBins/{numBins}/{command}/{subcommand}/{sample_id}_replicate_{replicate}.h5"
     shell:
         """
-            hicMergeMatrixBins --matrices {input.files} --numBins {wildcards.numBins} --outFileName {output.matrix}
+            hicMergeMatrixBins --matrix {input.files} --numBins {wildcards.numBins} --outFileName {output.matrix}
         """
