@@ -111,7 +111,7 @@ rule all_hicMergeMatrixBins_1MB:
                 numBins = [10, 50, 100],
                 command = "hicBuildMatrix_bin",
                 subcommand = "10000",
-                sample = samples['sample_id'].unique().tolist(),
+                sample_id = samples['sample_id'].unique().tolist(),
                 replicate = [1, 2])
 
 ### Test rules
