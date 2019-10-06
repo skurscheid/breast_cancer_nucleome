@@ -40,6 +40,19 @@ rule all_trim:
                 file = fastp_targets(units),
                 suffix = ["json", "html"])
 
+rule all_trim_pe:
+    input:
+        expand("fastp/trimmed/pe/{file}.end1.fastq.gz",
+                file = fastp_targets(units)),
+        expand("fastp/trimmed/pe/{file}.end2.fastq.gz",
+                file = fastp_targets(units)),
+        expand("fastp/report/pe/{file}.end1.fastp.{suffix}",
+                file = fastp_targets(units),
+                suffix = ["json", "html"]),
+        expand("fastp/report/pe/{file}.end2.fastp.{suffix}",
+                file = fastp_targets(units),
+                suffix = ["json", "html"])
+
 rule all_align:
     input:
         expand("bowtie2/align/se/{file}.{end}.bam",
