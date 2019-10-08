@@ -118,7 +118,7 @@ rule hicBuildMatrix_restrictionCutFile:
     params:
         inputBufferSize = 400000
     threads:
-        24
+        16
     input:
         mate1 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end1.bam",
         mate2 = "bowtie2/align/se/{batch}/{sample}_{lane}_{replicate}.end2.bam",
