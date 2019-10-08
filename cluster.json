@@ -28,6 +28,6 @@
     "hicBuildMatrix_bin":
     {
         "mem" : "256G",
-        "walltime" : "02:00:00"
+        "walltime" : "24:00:00"
     }
 }

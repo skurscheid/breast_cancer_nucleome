@@ -46,10 +46,7 @@ rule all_trim_pe:
                 file = fastp_targets(units)),
         expand("fastp/trimmed/pe/{file}.end2.fastq.gz",
                 file = fastp_targets(units)),
-        expand("fastp/report/pe/{file}.end1.fastp.{suffix}",
-                file = fastp_targets(units),
-                suffix = ["json", "html"]),
-        expand("fastp/report/pe/{file}.end2.fastp.{suffix}",
+        expand("fastp/report/pe/{file}.fastp.{suffix}",
                 file = fastp_targets(units),
                 suffix = ["json", "html"])
 
