@@ -29,7 +29,7 @@ rule findRestSites:
         rest_sites_bed = "hicexplorer/findRestSite/hg38_{res_enzyme}_rest_sites.bed"
     shell:
         """
-        hicexplorer --fasta {input.fasta} --searchPattern {params.searchPattern} --outFile {output.rest_sites_bed}
+        findRestSite --fasta {input.fasta} --searchPattern {params.searchPattern} --outFile {output.rest_sites_bed}
         """
 
 rule mappableRestSites:

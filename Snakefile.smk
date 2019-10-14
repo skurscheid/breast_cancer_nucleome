@@ -63,8 +63,6 @@ rule all_hicbuildmatrix_HindIII:
     input:	
         expand("hicexplorer/hicBuildMatrix/HindIII/{file}_hic_matrix.h5",
                file = hicmatrixbuilder_targets(units)),
-        expand("hicexplorer/hicBuildMatrix/HindIII/{file}.bam",
-               file = hicmatrixbuilder_targets(units)),
 	expand("hicexplorer/hicBuildMatrix/HindIII/{file}/qc",
                file = hicmatrixbuilder_targets(units)),
 
