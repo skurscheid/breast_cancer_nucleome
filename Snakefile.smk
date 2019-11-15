@@ -104,7 +104,8 @@ rule all_hicQC:
                batch = ["170306_NB501086_0102_HiC1_6_run4", "NB501086_0088_DTremethick_JCSMR_HiC_shZ_TGFb",
                         "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb", "NB501086_0100_DTremethick_HiC1_6_run3",
                         "NB501086_0079_DTremethick_JCSMR_HiC_run1", "NB501086_0103_DTremethick_JCSMR_HiC_shZ_TGFb_run3",
-                        "NB501086_0080_DTremethick_JCSMR_HiC_run2", "Project_SN877_0303_Max_Nekrasov_Human_Breast_HiC"])
+                        "NB501086_0080_DTremethick_JCSMR_HiC_run2", "Project_SN877_0303_Max_Nekrasov_Human_Breast_HiC",
+                        "A00548_0057_RDomaschenz_JCSMR_HiC"])
 
 rule all_hicQC_per_sample:
     input:
@@ -162,7 +163,7 @@ rule test_hicCorrelate_perBatch:
     input:
         expand("hicexplorer/hicCorrelate/perBatch/hicBuildMatrix_bin/{subcommand}/{batch}_{plot}.pdf",
                 subcommand = "10000",
-                batch = "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb",
+                batch = "A00548_0057_RDomaschenz_JCSMR_HiC",
                 plot = ["heatmap", "scatterplot"])
 
 rule test_align_rerun:
