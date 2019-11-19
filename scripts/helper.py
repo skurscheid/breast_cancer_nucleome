@@ -51,7 +51,7 @@ def hicQCLabelsPerSample(wildcards):
     """function for fetching QC log files per sample"""
     t = []
     for index, row in units[units.sample_id == wildcards["sample_id"]].iterrows():
-        t.append(row['batch'] + "_" + row['lane'] + "_" + str(row['replicate']))
+        t.append(row['sample_id'] + "_" + str(row['replicate']) + "_" + row['batch'])
     return(t)
 
 def h5PerBatchFiles(wildcards):
