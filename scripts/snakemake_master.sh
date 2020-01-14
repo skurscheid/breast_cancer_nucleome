@@ -9,10 +9,11 @@
 #PBS -l mem=4GB
 #PBS -M skurscheid@gmail.com
 #PBS -m abe
+#PBS -l storage=scratch/kv78
 
 source ~/.bashrc
 
-/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk all_align\
+/home/150/sxk150/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/breast_cancer_nucleome/Snakefile.smk all_align\
     --configfile /home/150/sxk150/breast_cancer_nucleome/config.yaml\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\
@@ -21,12 +22,13 @@ source ~/.bashrc
                     -l mem={cluster.mem} \
                     -l wd\
                     -l walltime={cluster.walltime}\
+		    -l storage={cluster.storage}\
                     -M {cluster.M}\
                     -m {cluster.m}\
                     -e {cluster.error_out_dir} \
                     -o {cluster.std1_out_dir}" \
 	--jobs 100\
-	-d /short/kv78/mcf10a-hic\
+	-d /scratch/kv78/mcf10a-hic\
 	--rerun-incomplete \
     --local-cores 1\
 	--cluster-config /home/150/sxk150/breast_cancer_nucleome/cluster.json\

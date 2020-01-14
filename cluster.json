@@ -8,7 +8,8 @@
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
         "m" : "abe",
-        "walltime": "23:59:00"
+        "walltime": "23:59:00",
+	"storage" : "scratch/kv78"
     },
     "hicCorrelate_per_batch":
     {
