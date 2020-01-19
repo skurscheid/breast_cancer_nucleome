@@ -55,5 +55,5 @@ MCF10AHP1aKD	1	A00548_0057_RDomaschenz_JCSMR_HiC	L001	raw/A00548_0057_RDomaschen
 MCF10AHP1aKD	2	A00548_0057_RDomaschenz_JCSMR_HiC	L001	raw/A00548_0057_RDomaschenz_JCSMR_HiC/MCF10A_Hp1alpha_rep2_S4_R1_001.fastq.gz	raw/A00548_0057_RDomaschenz_JCSMR_HiC/MCF10A_Hp1alpha_rep2_S4_R2_001.fastq.gz
 MCF10A	3	A00548_0035_RDomaschenz_JCSMR_HiC_10A_and_10ca1a	L001	raw/A00548_0035_RDomaschenz_JCSMR_HiC_10A_and_10ca1a/HiC_10A_2_S2_R1_001.fastq.gz	raw/A00548_0035_RDomaschenz_JCSMR_HiC_10A_and_10ca1a/HiC_10A_2_S2_R2_001.fastq.gz
 MCF10CA1a	3	A00548_0035_RDomaschenz_JCSMR_HiC_10A_and_10ca1a	L001	raw/A00548_0035_RDomaschenz_JCSMR_HiC_10A_and_10ca1a/HiC_c1aA_4_S4_R1_001.fastq.gz	raw/A00548_0035_RDomaschenz_JCSMR_HiC_10A_and_10ca1a/HiC_c1aA_4_S4_R2_001.fastq.gz
-MCF10A	4	MiSeq_run	L001	raw/MCF10A-rep1_S1_L001_R1_001.fastq.gz	raw/MCF10A-rep1_S1_L001_R2_001.fastq.gz
-MCF10CA1a	4	MiSeq_run	L001	raw/MCF10Ca1a-rep1_S2_L001_R1_001.fastq.gz	raw/MCF10Ca1a-rep1_S2_L001_R2_001.fastq.gz
+MCF10A	4	MiSeq_run	L001	raw/MiSeq_run/MCF10A-rep1_S1_L001_R1_001.fastq.gz	raw/MiSeq_run/MCF10A-rep1_S1_L001_R2_001.fastq.gz
+MCF10CA1a	4	MiSeq_run	L001	raw/MiSeq_run/MCF10Ca1a-rep1_S2_L001_R1_001.fastq.gz	raw/MiSeq_run/MCF10Ca1a-rep1_S2_L001_R2_001.fastq.gz
