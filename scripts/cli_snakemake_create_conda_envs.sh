@@ -18,4 +18,4 @@
     --local-cores 1\
 	--cluster-config /home/150/sxk150/breast_cancer_nucleome/cluster.json\
     --keep-going\
-	-pr${2}
+	-prn --create-envs-only

@@ -2,7 +2,7 @@
     "__default__" :
     {
         "P" : "pb97",
-        "queue" : "biodev",
+        "queue" : "normal",
         "mem" : "32G",
         "std1_out_dir" : "/home/150/sxk150/qsub_out",
         "error_out_dir" : "/home/150/sxk150/qsub_error",
