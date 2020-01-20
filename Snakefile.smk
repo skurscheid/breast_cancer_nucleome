@@ -132,6 +132,14 @@ rule all_hicMergeMatrixBins_1MB:
                 sample_id = samples['sample_id'].unique().tolist(),
                 replicate = [1, 2])
 
+rule all_hicCorrelate_perSample:
+    input:
+        expand("hicexplorer/hicCorrelate/perSample/hicBuildMatrix_bin/{subcommand}/{sample}_{plot}.pdf",
+                subcommand = "10000",
+                sample = ["MCF10A", "MCF10CA1a", "MCF10AT1", "MCF10AshZ", "MCF10ATGFb", "MCF10AHP1aKD"],
+                plot = ["heatmap", "scatterplot"])
+
+
 ### Test rules
 rule test_run_hicbuildmatrix_HindIII:
     input:
