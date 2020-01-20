@@ -105,7 +105,7 @@ rule all_hicQC:
                         "NB501086_0064_DTremethick_JCSMR_HiC_shZ_TGFb", "NB501086_0100_DTremethick_HiC1_6_run3",
                         "NB501086_0079_DTremethick_JCSMR_HiC_run1", "NB501086_0103_DTremethick_JCSMR_HiC_shZ_TGFb_run3",
                         "NB501086_0080_DTremethick_JCSMR_HiC_run2", "Project_SN877_0303_Max_Nekrasov_Human_Breast_HiC",
-                        "A00548_0057_RDomaschenz_JCSMR_HiC"])
+                        "A00548_0057_RDomaschenz_JCSMR_HiC", "MiSeq_run"])
 
 rule all_hicQC_per_sample:
     input:
