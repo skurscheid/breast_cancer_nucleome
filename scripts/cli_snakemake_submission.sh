@@ -13,7 +13,7 @@
                     -e {cluster.error_out_dir} \
                     -o {cluster.std1_out_dir}" \
 	--jobs 100\
-	-d /scatch/kv78/mcf10a-hic\
+	-d /scratch/kv78/mcf10a-hic\
 	--rerun-incomplete \
     --local-cores 1\
 	--cluster-config /home/150/sxk150/breast_cancer_nucleome/cluster.json\
