@@ -81,6 +81,10 @@ rule all_hicSumMatrices_bin:
                sample = samples['sample_id'].unique().tolist(),
                replicate = [1,2],
                bin_size = [10000]),
+        expand("hicexplorer/hicSumMatrices/hicBuildMatrix_bin/{bin_size}/{sample}_replicate_{replicate}.h5",
+               sample = ["MCF10A", "MCF10CA1a"],
+               replicate = [3,4],
+               bin_size = [10000])
 
 rule all_hicSumMatrices_HindIII:
     input:
@@ -94,6 +98,11 @@ rule all_hicCorrelate_perReplicate:
                 subcommand = "10000",
                 sample = samples['sample_id'].unique().tolist(),
                 replicate = [1, 2],
+                plot = ["heatmap", "scatterplot"]),
+        expand("hicexplorer/hicCorrelate/perReplicate/hicBuildMatrix_bin/{subcommand}/{sample}_replicate_{replicate}_{plot}.pdf",
+                subcommand = "10000",
+                sample = ["MCF10A", "MCF10CA1a"],
+                replicate = [3,4],
                 plot = ["heatmap", "scatterplot"])
 
 rule all_hicQC:
