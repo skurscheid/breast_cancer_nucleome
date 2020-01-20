@@ -24,7 +24,7 @@ rule findRestSites:
     params:
         searchPattern = "AAGCTT"
     input:
-        fasta = lambda wildcards: config["params"]["hicexplorer"]["genome_fasta"]["raijin"]
+        fasta = lambda wildcards: config["params"]["hicexplorer"]["genome_fasta"]["gadi"]
     output:
         rest_sites_bed = "hicexplorer/findRestSite/hg38_{res_enzyme}_rest_sites.bed"
     shell:

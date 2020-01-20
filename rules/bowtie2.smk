@@ -27,7 +27,7 @@ rule bowtie2_se_untrimmed:
     threads:
         16
     params:
-        index = get_index("raijin", config),
+        index = get_index("gadi", config),
         cli_params = config['params']['bowtie2']['cli_params']
     input:
         fq = "/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
@@ -53,7 +53,7 @@ rule bowtie2_se:
     threads:
         16
     params:
-        index = get_index("raijin", config),
+        index = get_index("gadi", config),
         cli_params = config['params']['bowtie2']['cli_params']
     input:
         fq = "fastp/trimmed/pe/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"
@@ -83,7 +83,7 @@ rule bowtie2_se_rerun:
     threads:
         16
     params:
-        index = get_index("raijin", config),
+        index = get_index("gadi", config),
         cli_params = "--reorder"
     input:
         fq = "fastp/trimmed/pe/{batch}/{sample}_{lane}_{replicate}.{end}.fastq.gz"

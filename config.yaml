@@ -7,6 +7,7 @@ params:
       shiny: ""
       gdu: "/home/skurscheid/Data/References/Genomes/Homo_sapiens/GRCh38_ensembl84/genome.fa"
       raijin: "/short/kv78/References/Genomes/Homo_sapiens/GRCh38_ensembl84/canonical/genome.fa"
+      gadi: "/scratch/kv78/References/Genomes/Homo_sapiens/GRCh38_ensembl84/canonical/genome.fa"
     hicBuildMatrix:
       restrictionSequence: "AAGCTT"
       danglingSequence: "AGCT"
@@ -17,4 +18,5 @@ params:
       shiny: ""
       gdu: "/home/skurscheid/Data/References/Genomes/Homo_sapiens/GRCh38_ensembl84/canonical/index/hg38_ensembl84"
       raijin: "/short/kv78/References/Genomes/Homo_sapiens/GRCh38_ensembl84/canonical/index/hg38_ensembl84"
+      gadi: "/short/kv78/References/Genomes/Homo_sapiens/GRCh38_ensembl84/canonical/index/hg38_ensembl84"
   fastp: ""
