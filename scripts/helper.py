@@ -9,7 +9,7 @@ def make_targets_from_runTable(runTable, library_type, selected_columns, chip_in
         library = row[selected_columns[0]].split()[0]
         if library == chip_input_value:
             library = 'Input'
-        e = list([row[selected_columns[2]], library, library_type, row['Run']])
+        e = list([row[selected_columns[1]], library, library_type, row['Run']])
         p = "/".join(e)
         t.append(p)
     return(t)
